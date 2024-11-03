@@ -1,0 +1,258 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Seller Page</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Welcome to the Seller Page</h1>-->
+<!--<div>-->
+<!--    <p th:text="${message}"></p>-->
+<!--</div>-->
+<!--<p><a th:href="@{/logout}">Logout</a></p>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery Store - Seller Dashboard</title>
+    <style>
+        /* Basic Reset */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #1abc9c;
+          padding: 10px 20px;
+          color: white;
+        }
+
+        .navbar .menu-icon {
+          cursor: pointer;
+          display: none;
+        }
+
+        .navbar .menu-icon div {
+          width: 30px;
+          height: 3px;
+          background-color: white;
+          margin: 5px 0;
+          transition: 0.4s;
+        }
+
+        /* Center logo/name */
+        .navbar .logo {
+          font-size: 24px;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        /* Nav Links */
+        .nav-links {
+          list-style-type: none;
+          display: flex;
+          gap: 15px;
+        }
+
+        .nav-links li a {
+          text-decoration: none;
+          color: white;
+          font-size: 16px;
+          transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+          color: #f1c40f;
+        }
+
+        /* Main Content Area with Flexbox Layout */
+        .content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 30px;
+          background-color: #ffffff;
+          border-radius: 10px;
+          margin: 20px;
+        }
+
+        /* Table container styling */
+        .table-container {
+          width: 100%;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form styling */
+        form {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+        }
+
+        form input, form select {
+          margin: 10px 0;
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid #ddd;
+        }
+
+        /* Table styling for product listing */
+        .product-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .product-table th,
+        .product-table td {
+          padding: 10px;
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+
+        .product-table th {
+          background-color: #1abc9c;
+          color: white;
+        }
+
+        .product-table tr:hover {
+          background-color: #f1f1f1;
+        }
+
+        /* Footer styling */
+        .footer {
+          background-color: #1abc9c;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          margin-top: 50px;
+        }
+
+        .footer h3 {
+          margin-bottom: 10px;
+        }
+
+        .footer ul {
+          list-style-type: none;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .footer ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+        }
+
+        .footer ul li a:hover {
+          color: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="logo">Grocery Store - Seller</div>
+
+    <ul class="nav-links">
+        <li><a th:href="@{/index}">Home</a></li>
+        <li><a th:href="@{/products}">Products</a></li>
+        <li><a th:href="@{/orders}">Orders</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Main Content Area -->
+<section class="content">
+    <h2>Welcome to Your Seller Dashboard!</h2>
+    <p th:text="${message}"></p>
+
+    <!-- Form for Adding New Product -->
+    <div class="table-container">
+        <h2>Add New Product</h2>
+        <form action="#" method="POST">
+            <input type="text" placeholder="Product Name" required />
+            <input type="text" placeholder="Category" required />
+            <input type="number" placeholder="Price" required />
+            <input type="text" placeholder="Description" required />
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+
+    <!-- Table Container (Product Listing) -->
+    <div class="table-container">
+        <h2>Current Products</h2>
+        <table class="product-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Sample Product Row -->
+            <tr>
+                <td>1</td>
+                <td>Apple</td>
+                <td>Fruits</td>
+                <td>$1.00</td>
+                <td>Fresh Red Apples</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Milk</td>
+                <td>Dairy</td>
+                <td>$1.50</td>
+                <td>Fresh Cow Milk</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Carrot</td>
+                <td>Vegetables</td>
+                <td>$0.80</td>
+                <td>Fresh Orange Carrots</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <h3>Grocery Store</h3>
+    <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Help</a></li>
+    </ul>
+</footer>
+
+<script>
+    function toggleMenu() {
+      document.querySelector(".navbar").classList.toggle("active");
+    }
+</script>
+</body>
+</html>
